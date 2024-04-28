@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image:url(../img/bgImage-logo-dark.png);
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top; 
+    font-family: Helvetica, Arial, sans-serif;
+    color: white;
+    
+}
+
+/*Home Navbar Rent & Show stations*/
+
+#twonavbar{
+    background-color: rgb(255, 255, 255, 0.8);
+    margin: auto;
+    margin-top: 150px;
+    width: 600px;
+    min-height: 80px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.twonavbar-btn {
+    width: 180px;
+    background: #1b1f24;
+    background-image: -webkit-linear-gradient(top, #1b1f24, #283842);
+    background-image: -moz-linear-gradient(top, #1b1f24, #283842);
+    background-image: -ms-linear-gradient(top, #1b1f24, #283842);
+    background-image: -o-linear-gradient(top, #1b1f24, #283842);
+    background-image: linear-gradient(to bottom, #1b1f24, #283842);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Helvetica-UC;
+    color: #ffffff;
+    font-size: 30px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.twonavbar-btn:hover {
+    cursor: pointer;
+    background: #283842;
+    background-image: -webkit-linear-gradient(top, #283842, #1b1f24);
+    background-image: -moz-linear-gradient(top, #283842, #1b1f24);
+    background-image: -ms-linear-gradient(top, #283842, #1b1f24);
+    background-image: -o-linear-gradient(top, #283842, #1b1f24);
+    background-image: linear-gradient(to bottom, #283842, #1b1f24);
+    text-decoration: none;
+}
+
+  /*Home Links top right corner Login|Register & Manage bookings*/
+
+  #LoMa{
+    float: right;
+    font-family: Helvetica-UC;
+  }
+
+  #LoMa ul{
+    list-style-type: none;
+  }
+
+  .home-links, .home-links:visited {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    padding-right: 20px;
+  }
+
+  .home-links:hover{
+    color: #f34b2b;
+  }
+
+  .LoMa-icon{
+    width: 25px;
+    filter: invert(100%);
+
+  }
+
+  .current{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    padding-right: 20px;
+    color: #f34b2b;
+  }
+
+
+
+
+
+

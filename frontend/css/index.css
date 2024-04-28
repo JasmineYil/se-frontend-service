@@ -1,0 +1,35 @@
+@font-face {
+    font-family: Helvetica-UC;
+    src: url(../fonts/HelveticaUltraCompressed.otf) format('opentype');
+}
+
+body{
+    position: relative;
+    height: 95vh;
+    overflow: hidden;
+    font-family: Helvetica-UC;
+}
+
+body{
+    background-image:url(../img/bgImage-logo.png);
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    
+}
+
+#slogendiv{
+    width: 100%;
+    background-color: #f34b2b;
+    position: absolute;
+    bottom: 0;
+    z-index: auto;
+}
+
+#slogen{
+    font-size: 70px;
+    text-align: center;
+    color: white;
+}
