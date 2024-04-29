@@ -22,9 +22,9 @@ docker build -t se-frontend-service .
 Once the image is built, you can run it as a Docker container with the following command:
 
 ```bash
-docker run -d --name se-frontend -p 9091:9091 se-frontend-service
+docker run -d --name se-frontend -p 9095:9095 se-frontend-service
 ```
-This command starts a container named se-frontend, mapping port 9091 on the host to port 9091 on the container. The application will now be accessible through http://localhost:9091/user/.
+This command starts a container named se-frontend, mapping port 9095 on the host to port 9091 on the container. The application will now be accessible through http://localhost:9095/.
 
 ### Checking Logs
 
