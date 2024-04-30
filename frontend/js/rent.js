@@ -48,17 +48,17 @@ function displayCars(cars) {
         const seatsCell = carRow.insertCell();
         const priceCell = carRow.insertCell();
 
-        brandCell.innerHTML = `Brand: ${car.car_brand_name}`;
-        modelCell.innerHTML = `Model: ${car.car_model_name}`;
-        seatsCell.innerHTML = `Seats: ${car.number_of_seats}`;
-        priceCell.innerHTML = `Price: ${car.prices} $`;
+        brandCell.innerHTML = `Brand: ${car.brand}`;
+        modelCell.innerHTML = `Model: ${car.model}`;
+        seatsCell.innerHTML = `Seats: ${car.numberOfSeats}`;
+        priceCell.innerHTML = `Price: ${car.price} $`;
 
         const bookButtonCell = carRow.insertCell();
         const bookButton = document.createElement('button');
         bookButton.id = 'bookButton';
         bookButton.textContent = 'Book';
         bookButton.addEventListener('click', () => {
-            const confirmBooking = window.confirm(`Do you want to book ${car.car_brand_name} ${car.car_model_name}?`);
+            const confirmBooking = window.confirm(`Do you want to book ${car.brand} ${car.model}?`);
             if (confirmBooking) {
                 bookCar(car)
             }
@@ -84,15 +84,15 @@ function bookCar(car) {
             pickupDate: pickupDate,
             returnDate: returnDate,
             orderDate: today,
-            price: car.prices
+            price: car.price
         })
     })
         .then(response => {
             if (response.status === 201) {
-                alert(`You have booked ${car.car_brand_name} ${car.car_model_name}`);
+                alert(`You have booked ${car.brand} ${car.model}`);
                 fetchCars(pickupDate, returnDate);
             } else {
-                alert(`Booking failed for ${car.car_brand_name} ${car.car_model_name}`);
+                alert(`Booking failed for ${car.brand} ${car.model}`);
             }
         })
 
