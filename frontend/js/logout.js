@@ -3,7 +3,7 @@ window.addEventListener('load', (event) => {
 });
 
 function checkLoginState() {
-    fetch('api/v1/customers/check-session', {
+    fetch('http://localhost:9095/api/auth/check-session', {
         method: "GET",
         credentials: 'include'
     })
@@ -43,7 +43,7 @@ function updateLoginLinkToLogin() {
 
 function handleLogout(event) {
     event.preventDefault();
-    fetch('api/v1/customers/logout', {
+    fetch('http://localhost:9095/api/v1/customers/logout', {
         method: "POST",
         credentials: 'include'
     })

@@ -4,7 +4,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
     }
-    fetch('api/v1/customers/login', {
+    fetch('http://localhost:9095/api/v1/customers/login', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         .then(response => {
             if (response.ok) {
                 window.location.href = "/index.html";
-                return response.json() // TODO: Das war ursprünglich drinnen. Bin mir unsicher ob das notwendig ist.
+                return response.json()
             } else {
                 alert("Login failed. Please check your email and password.");
                 return response.text().then(text => Promise.reject(text));

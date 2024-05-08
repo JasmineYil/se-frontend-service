@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchBookings() {
-    fetch('/api/v1/bookings', {
+    fetch('http://localhost:9095/api/v1/bookings', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ function updateBookingTable(bookings) {
 }
 
 function deleteBooking(orderId, carBrand, carModel) {
-    fetch(`/api/v1/bookings/${orderId}`, {
+    fetch(`http://localhost:9090/api/v1/bookings/${orderId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
