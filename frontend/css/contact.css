@@ -1,13 +1,12 @@
+#stations{
+    padding-top: 150px;
+    padding-left: 200px;
+    padding-right: 200px;
+    color: #ffffff;
+}
+
 #contact{
-    max-width: 800px;
-    min-height: fit-content;
-    margin: auto;
-    margin-top: 200px;
-    padding: 20px;
-    border: 1px solid #ffffff;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #000000;
+    margin-left: 50px;
 }
 
 #contact h1{

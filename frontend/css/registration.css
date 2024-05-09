@@ -12,7 +12,7 @@ form {
     border-radius: 5px;
     background-color: #ffffff;
 }
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -20,6 +20,11 @@ input[type="text"], input[type="email"], input[type="password"] {
     border-radius: 3px;
     box-sizing: border-box;
 }
+
+#eyeOpen{
+    margin-left: 10px;
+}
+
 input[type="submit"] {
     width: 30%;
     padding: 10px;
@@ -39,7 +44,7 @@ input[type="submit"]:hover {
     background-color: #f34b2b;
     color: black;
     font-weight: bold;
-    
+
 }
 h2{
     margin-bottom: 20px;
@@ -53,4 +58,26 @@ h2{
 .link:hover{
     color: #f34b2b;
 }
+
+.password-container {
+    display: flex;
+    align-items: center;
+}
+
+input[type="password"] {
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Stellen Sie die Größe entsprechend ein */
+}
+
+button:focus {
+    outline: none;
+}
+
 
