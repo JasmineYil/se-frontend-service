@@ -55,8 +55,8 @@ function displayCars(cars) {
         const seatsCell = carRow.insertCell();
         const priceCell = carRow.insertCell();
 
-        brandCell.innerHTML = `Brand: ${car.brand}`;
-        modelCell.innerHTML = `Model: ${car.model}`;
+        brandCell.innerHTML = `Brand: ${car.brandName}`;
+        modelCell.innerHTML = `Model: ${car.modelName}`;
         seatsCell.innerHTML = `Seats: ${car.numberOfSeats}`;
         priceCell.innerHTML = `Price/Day: ${car.price}${currencySymbol}`;
 
@@ -67,7 +67,7 @@ function displayCars(cars) {
         bookButton.addEventListener('click', () => {
             Swal.fire({
                 title: 'Confirm Booking',
-                text: `Do you want to book ${car.brand} ${car.model}?`,
+                text: `Do you want to book ${car.brandName} ${car.modelName}?`,
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -145,15 +145,14 @@ function bookCar(car) {
 }
 
 function fetchCars(pickupDate, returnDate) {
-    fetch('http://localhost:9095/api/v1/cars', {
-        method: 'POST',
+    fetch('http://localhost:9095/api/v1/cars?' + new URLSearchParams({
+        "pickupDate": pickupDate,
+        "returnDate": returnDate
+    }), {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            pickupDate: pickupDate,
-            returnDate: returnDate
-        })
     })
         .then(response => {
             if (response.ok) {
