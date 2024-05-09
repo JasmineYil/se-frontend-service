@@ -23,7 +23,7 @@ function fetchBookings() {
         });
 }
 
-function updateBookingTable(bookings) {
+async function updateBookingTable(bookings) {
     const table = document.getElementById('CurBookingTable');
     table.innerHTML = '<tr>' +
         '<th>Brand</th>' +
@@ -39,25 +39,27 @@ function updateBookingTable(bookings) {
 
     const currencySymbol = getCurrencySymbol(document.getElementById('currency-dropdown').value);
 
-    bookings.forEach(booking => {
+
+    for (const booking of bookings) {
+        const carDetails = await fetchCarDetails(booking.carId)
         const row = table.insertRow(-1);
         const brandCell = row.insertCell(0);
         const modelCell = row.insertCell(1);
         const seatsCell = row.insertCell(2);
         const priceCell = row.insertCell(3);
-        const pickupDateCell = row.insertCell(4);
-        const returnDateCell = row.insertCell(5);
-        const orderDateCell = row.insertCell(6);
+        const orderDateCell = row.insertCell(4);
+        const pickupDateCell = row.insertCell(5);
+        const returnDateCell = row.insertCell(6);
         const orderIdCell = row.insertCell(7)
 
-        brandCell.textContent = booking.brand;
-        modelCell.textContent = booking.model;
-        seatsCell.textContent = booking.seats;
+        brandCell.textContent = carDetails.brandName;
+        modelCell.textContent = carDetails.modelName;
+        seatsCell.textContent = carDetails.numberOfSeats;
         priceCell.textContent = `${booking.price.toFixed(2)}${currencySymbol}`;
-        orderDateCell.textContent = formatDate(booking.orderDate);
+        orderDateCell.textContent = formatDate(booking.bookingDate);
         pickupDateCell.textContent = formatDate(booking.pickupDate);
         returnDateCell.textContent = formatDate(booking.returnDate);
-        orderIdCell.textContent = booking.orderId;
+        orderIdCell.textContent = booking.bookingId;
 
         const deleteButtonCell = row.insertCell(8);
         const deleteButton = document.createElement('button');
@@ -66,7 +68,7 @@ function updateBookingTable(bookings) {
         deleteButton.onclick = function() {
             Swal.fire({
                 title: 'Are you sure?',
-                text: `Do you want to delete the Booking for ${booking.brand} ${booking.model}?`,
+                text: `Do you want to delete the Booking for ${carDetails.brandName} ${carDetails.modelName}?`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -75,12 +77,25 @@ function updateBookingTable(bookings) {
                 cancelButtonText: 'No, cancel!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    deleteBooking(booking.orderId, booking.brand, booking.model);
+                    deleteBooking(booking.bookingId, carDetails.brandName, carDetails.modelName);
                 }
             });
         };
         deleteButtonCell.appendChild(deleteButton);
-    });
+    }
+}
+
+async function fetchCarDetails(carId) {
+    try {
+        const response = await fetch(`http://localhost:9095/api/v1/cars/${carId}`);
+        if (!response.ok) {
+            alert(`Failed to fetch car details for Car ID: ${carId}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching car details:", error);
+        return null;
+    }
 }
 
 function getCurrencySymbol(currency) {
@@ -93,7 +108,7 @@ function getCurrencySymbol(currency) {
 }
 
 function deleteBooking(orderId, brand, model) {
-    fetch(`http://localhost:9090/api/v1/bookings/${orderId}`, {
+    fetch(`http://localhost:9095/api/v1/bookings/${orderId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
