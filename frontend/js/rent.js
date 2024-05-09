@@ -95,10 +95,19 @@ function getCurrencySymbol(currency) {
     }
 }
 
+function getCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
 function bookCar(car) {
     let pickupDate = document.getElementById('pickupDate').value;
     let returnDate = document.getElementById('returnDate').value;
-    const today = new Date().toISOString().split('T')[0];
+    const today = getCurrentDate();
 
     fetch('http://localhost:9095/api/v1/bookings', {
         method: 'POST',
@@ -109,7 +118,7 @@ function bookCar(car) {
             carId: car.id,
             pickupDate: pickupDate,
             returnDate: returnDate,
-            orderDate: today,
+            bookingDate: today,
             price: car.price
         })
     })
