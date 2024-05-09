@@ -7,6 +7,8 @@
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <link href="css/nav.css" type="text/css" rel="stylesheet">
     <link href="css/manageBookings.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="/js/logout.js"></script>
     <script defer src="/js/manageBookings.js"></script>
     <title>OnTheMove Car Rentals</title>
@@ -33,6 +35,7 @@
         </div>
         </div>
     </nav>
+
     <div id="LoMa">
         <ul>
             <li>
@@ -41,11 +44,15 @@
             <li>
                 <img class="LoMa-icon" src="img/user.png" alt=""> <a class="home-links" href="login.html"></a>
             </li>
-            <li>
-                <img class="LoMa-icon" src="img/car.png" alt=""> <a class="current" class="home-links" href="#">Manage bookings</a>
-            </li> 
+            <li id="profileSettings">
+                <img class="LoMa-icon" src="img/account-settings.png" alt=""> <a class="home-links" href="profile.html">Profile</a>
+            </li>
+            <li id="manageBookings">
+                <img class="LoMa-icon" src="img/car.png" alt=""> <a class="current" class="home-links" href="manageBookings.html">Manage bookings</a>
+            </li>
         </ul>
     </div>
+
     <div id="manageBookingsPage">
         <h1>Manage Bookings</h1>
 
@@ -56,7 +63,7 @@
                     <select id="currency-dropdown">
                         <option value="USD">USD $</option>
                         <option value="EUR">EUR €</option>
-                        <option value="JPY">JPY ¥</option>
+                        <option value="GBP">GBP £</option>
                     </select>
                 </div>
             </div>

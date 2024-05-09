@@ -6,16 +6,16 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <link href="css/nav.css" type="text/css" rel="stylesheet">
-    <link href="css/rent.css" type="text/css" rel="stylesheet">
+    <link href="css/profile.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="/js/profile.js"></script>
     <script defer src="/js/logout.js"></script>
-    <script defer src="js/rent.js"></script>
-    <script defer src="js/currencyConverter.js"></script>
     <title>OnTheMove Car Rentals</title>
 </head>
-<body>
 
+<body>
 <nav>
     <div class="navbar">
         <div class="container nav-container">
@@ -28,8 +28,9 @@
             <div class="logo">
             </div>
             <div class="menu-items">
-                <li><a href="index.html">Home</a></li>
+                <li><a class="currentNav" href="index.html">Home</a></li>
                 <li><a href="rent.html">Rent</a></li>
+                <li><a href="showstations.html">Show stations</a></li>
                 <li><a href="manageBookings.html">Manage bookings</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </div>
@@ -40,13 +41,13 @@
 <div id="LoMa">
     <ul>
         <li>
-            <img class="LoMa-icon" src="img/home.png" alt=""> <a class="current" class="home-links" href="index.html">Home</a>
+            <img class="LoMa-icon" src="img/home.png" alt=""> <a class="home-links" href="index.html">Home</a>
         </li>
         <li>
             <img class="LoMa-icon" src="img/user.png" alt=""> <a class="home-links" href="login.html"></a>
         </li>
         <li id="profileSettings">
-            <img class="LoMa-icon" src="img/account-settings.png" alt=""> <a class="home-links" href="profile.html">Profile</a>
+            <img class="LoMa-icon" src="img/account-settings.png" alt=""> <a class="current" class="home-links" href="profile.html">Profile</a>
         </li>
         <li id="manageBookings">
             <img class="LoMa-icon" src="img/car.png" alt=""> <a class="home-links" href="manageBookings.html">Manage bookings</a>
@@ -54,35 +55,40 @@
     </ul>
 </div>
 
-<div id="rent">
-    <h1>Rent</h1>
+<div id="profile">
+    <h1>Profile</h1>
+    <table id="profileTable">
+        <tr>
+            <th>
+                Firstname:
+            </th>
+            <td><span id="firstName"></span></td>
+        </tr>
+        <tr>
+            <th>
+                Lastname:
+            </th>
+            <td><span id="lastName"></span></td>
+        </tr>
+        <tr>
+            <th>
+                Mobile Number:
+            </th>
+            <td><span id="phoneNumber"></span></td>
+            <td><i id="settingsBtn" class="material-icons">settings</i></td>
+        </tr>
+        <tr>
+            <th>
+                Email:
+            </th>
+            <td><span id="email"></span></td>
+        </tr>
+    </table>
 
-    <h3>Available Cars</h3>
-    <div class="currency-converter">
-        <div class="currency-select">
-            <select id="currency-dropdown">
-                <option value="USD">USD $</option>
-                <option value="EUR">EUR €</option>
-                <option value="GBP">GBP £</option>
-            </select>
-        </div>
+    <div id="profileActions">
+        <button id="deleteProfileBtn" class="delete-btn">Delete My Profile</button>
     </div>
-    <div id="rentingCalender">
-        <form id="rentForm">
-            <label for="pickupDate">Pick-up Date:</label>
-            <input type="date" id="pickupDate" name="pickupDate" required>
-
-            <label for="returnDate">Return Date:</label>
-            <input type="date" id="returnDate" name="returnDate" required>
-
-            <button type="button" id="go-button" onclick="submitRentForm()">Go</button>
-        </form>
-    </div>
-
-
-
-    <div id="carsContainer"></div>
-
 </div>
+
 </body>
 </html>

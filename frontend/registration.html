@@ -7,20 +7,21 @@
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <link href="css/nav.css" type="text/css" rel="stylesheet">
     <link href="css/registration.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script defer src="js/registration.js"></script>
     <title>OnTheMove Car Rentals</title>
 </head>
 <body>
 
-    <nav>
-        <div class="navbar">
+<nav>
+    <div class="navbar">
         <div class="container nav-container">
             <input class="checkbox" type="checkbox" name="" id="" />
             <div class="hamburger-lines">
                 <span class="line line1"></span>
                 <span class="line line2"></span>
                 <span class="line line3"></span>
-            </div>  
+            </div>
             <div class="logo">
             </div>
             <div class="menu-items">
@@ -30,49 +31,60 @@
                 <li><a href="contact.html">Contact</a></li>
             </div>
         </div>
-        </div>
-    </nav>
+    </div>
+</nav>
 
-    <div id="LoMa">
-        <ul>
-            <li>
-                <img class="LoMa-icon" src="img/home.png" alt=""> <a class="home-links" href="index.html">Home</a>
-            </li>
-            <li>
-                <img class="LoMa-icon" src="img/user.png" alt=""> <a class="current" class="home-links" href="login.html">Login | Register</a>
-            </li>
-            <li>
-                <img class="LoMa-icon" src="img/car.png" alt=""> <a class="home-links" href="#">Manage bookings</a>
-            </li> 
-        </ul>
+<div id="LoMa">
+    <ul>
+        <li>
+            <img class="LoMa-icon" src="img/home.png" alt=""> <a class="home-links" href="index.html">Home</a>
+        </li>
+        <li>
+            <img class="LoMa-icon" src="img/user.png" alt=""> <a class="current" class="home-links" href="login.html">Login | Register</a>
+        </li>
+        <li id="profileSettings" style="display: none;">
+            <img class="LoMa-icon" src="img/account-settings.png" alt=""> <a class="home-links" href="profile.html">Profile</a>
+        </li>
+        <li id="manageBookings" style="display: none;">
+            <img class="LoMa-icon" src="img/car.png" alt=""> <a class="home-links" href="manageBookings.html">Manage bookings</a>
+        </li>
+    </ul>
+</div>
+
+
+<form id="registrationForm">
+    <h2>User Registration</h2>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Max" required>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Mustermann" required>
+
+    <label for="phoneNumber">Mobile Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="069945691238" required pattern="[0-9]{1,15}" title="Digits only">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="max@mustermann.at" required>
+
+    <label for="licenceNumber">Licence Number:</label>
+    <input type="text" id="licenceNumber" name="licenceNumber" placeholder="147659862" required pattern="\d{9}" title="9 Digits only">
+
+    <label for="password">Password:</label>
+    <div class="password-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" onclick="togglePasswordVisibility()" style="background: none; border: none; cursor: pointer;">
+            <i id="eyeOpen" class="material-icons" aria-hidden="true" style="display:none;">visibility</i>
+            <i id="eyeClosed" class="material-icons" aria-hidden="true">visibility_off</i>
+        </button>
     </div>
 
 
-    <form id="registrationForm">
-        <h2>User Registration</h2>
-        
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
-       
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
 
-        <label for="phoneNumber">Mobile Number:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber" required required style="width: 100%; height: 40px; margin-top: 10px; margin-bottom: 10px;">
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="licenceNumber">Licence Number:</label>
-        <input type="text" id="licenceNumber" name="licenceNumber" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+    <div><input type="submit" value="Register"></div>
 
-        <div><input type="submit" value="Register"></div>
-        
-    </form>
+</form>
 
-    
+
 </body>
 </html>

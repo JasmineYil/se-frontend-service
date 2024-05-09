@@ -13,15 +13,27 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = "/index.html";
-                return response.json()
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: 'Welcome back!',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = "/index.html";
+                });
             } else {
-                alert("Login failed. Please check your email and password.");
-                return response.text().then(text => Promise.reject(text));
+                return response.text().then(text => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: 'Please check your email and password.',
+                        confirmButtonText: 'OK'
+                    });
+                    return Promise.reject(text);
+                });
             }
         })
         .catch(error => {
             console.error("Error:", error);
-            alert("An error occurred. Please try again later.");
         });
 });

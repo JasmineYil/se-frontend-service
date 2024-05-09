@@ -1,0 +1,39 @@
+#profile{
+    max-width: 800px;
+    min-height: fit-content;
+    margin: auto;
+    margin-top: 200px;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: left;
+}
+h1{
+    margin-bottom: 20px;
+}
+
+#profileTable td{
+    padding-left: 20px;
+}
+
+#deleteProfileBtn{
+    margin-top: 20px;
+    padding: 5px;
+    background-color: #ffffff;
+    border: 2px solid #b90101;
+    border-radius: 10px;
+    color: #b90101;
+    cursor: pointer;
+}
+
+#deleteProfileBtn:hover{
+    background-color: #b90101;
+    border: 2px solid #b90101;
+    color: #ffffff;
+}
+
+#settingsBtn{
+    cursor: pointer;
+}

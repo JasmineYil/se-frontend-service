@@ -29,13 +29,15 @@ function updateBookingTable(bookings) {
         '<th>Brand</th>' +
         '<th>Model</th>' +
         '<th>Seat Number</th>' +
-        '<th>Price</th>' +
+        '<th>Price/Day</th>' +
         '<th>Order Date</th>' +
         '<th>Pickup Date</th>' +
         '<th>Return Date</th>' +
         '<th>Order ID</th>' +
         '<th></th>' +
         '</tr>';
+
+    const currencySymbol = getCurrencySymbol(document.getElementById('currency-dropdown').value);
 
     bookings.forEach(booking => {
         const row = table.insertRow(-1);
@@ -48,10 +50,10 @@ function updateBookingTable(bookings) {
         const orderDateCell = row.insertCell(6);
         const orderIdCell = row.insertCell(7)
 
-        brandCell.textContent = booking.carBrand;
-        modelCell.textContent = booking.carModel;
-        seatsCell.textContent = booking.carSeats;
-        priceCell.textContent = `$${booking.carPrice.toFixed(2)}`;
+        brandCell.textContent = booking.brand;
+        modelCell.textContent = booking.model;
+        seatsCell.textContent = booking.seats;
+        priceCell.textContent = `${booking.price.toFixed(2)}${currencySymbol}`;
         orderDateCell.textContent = formatDate(booking.orderDate);
         pickupDateCell.textContent = formatDate(booking.pickupDate);
         returnDateCell.textContent = formatDate(booking.returnDate);
@@ -62,18 +64,35 @@ function updateBookingTable(bookings) {
         deleteButton.id = 'deleteButton';
         deleteButton.textContent = '✖';
         deleteButton.onclick = function() {
-            const confirmDeleteBooking = window.confirm(`Do you want to delete the Booking for ${booking.carBrand} ${booking.carModel}?`);
-            if(confirmDeleteBooking){
-                deleteBooking(booking.orderId, booking.carBrand, booking.carModel);
-            }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Do you want to delete the Booking for ${booking.brand} ${booking.model}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteBooking(booking.orderId, booking.brand, booking.model);
+                }
+            });
         };
-
-
         deleteButtonCell.appendChild(deleteButton);
     });
 }
 
-function deleteBooking(orderId, carBrand, carModel) {
+function getCurrencySymbol(currency) {
+    switch (currency) {
+        case 'USD': return '$';
+        case 'EUR': return '€';
+        case 'GBP': return '£';
+        default: return '$';
+    }
+}
+
+function deleteBooking(orderId, brand, model) {
     fetch(`http://localhost:9090/api/v1/bookings/${orderId}`, {
         method: 'DELETE',
         headers: {
@@ -82,14 +101,29 @@ function deleteBooking(orderId, carBrand, carModel) {
     })
         .then(response => {
             if (response.status === 200) {
-                alert(`Booking deleted successfully for ${carBrand} ${carModel}`);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: `Booking deleted successfully for ${brand} ${model}.`,
+                    confirmButtonText: 'OK'
+                });
                 fetchBookings(); // Refresh the list after deletion
             } else {
-                alert(`Deleting failed for ${carBrand} ${carModel}`);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Delete Failed',
+                    text: `Deleting failed for ${brand} ${model}.`,
+                    confirmButtonText: 'OK'
+                });
             }
         })
         .catch(error => {
-            alert(`There was a problem with the delete operation: ${error}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Delete Error',
+                text: `There was a problem with the delete operation: ${error}`,
+                confirmButtonText: 'OK'
+            });
         });
 }
 

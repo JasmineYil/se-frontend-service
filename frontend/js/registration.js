@@ -27,3 +27,20 @@ document.getElementById("registrationForm").addEventListener("submit", function 
             alert("An error occurred. Please try again later.");
         });
 });
+
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('password');
+    var eyeOpen = document.getElementById('eyeOpen');
+    var eyeClosed = document.getElementById('eyeClosed');
+    var isPasswordHidden = passwordInput.type === 'password';
+
+    if (isPasswordHidden) {
+        passwordInput.type = 'text';  // Set the type to text to show the password
+        eyeOpen.style.display = 'inline-block';  // Show the open eye icon
+        eyeClosed.style.display = 'none';  // Hide the closed eye icon
+    } else {
+        passwordInput.type = 'password';  // Set the type to password to hide the password
+        eyeOpen.style.display = 'none';  // Hide the open eye icon
+        eyeClosed.style.display = 'inline-block';  // Show the closed eye icon
+    }
+}
